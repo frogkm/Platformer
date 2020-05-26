@@ -11,7 +11,7 @@
 class Game {
   private:
     SDL_Window* win;
-    SDL_Renderer* rend;
+
     bool running;
     void loop();
     void checkKeyboard();
@@ -24,6 +24,7 @@ class Game {
     vector<Block*> blocks;
 
   public:
+    static SDL_Renderer* rend;
     Game();
 };
 

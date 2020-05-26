@@ -8,7 +8,7 @@ class Player : public GameObject {
     int jumpHeight;
 
   public:
-    Player(SDL_Renderer* rend, SDL_Surface* surface, int x, int y);
+    Player(SDL_Surface* surface, int x, int y);
 
 
 };

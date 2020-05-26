@@ -1,8 +1,9 @@
 #include "GameObject.h"
+#include "Game.h"
 
-GameObject :: GameObject(SDL_Renderer* rend, SDL_Surface* surface, int x, int y){
+GameObject :: GameObject(SDL_Surface* surface, int x, int y){
   this->surface = surface;
-  texture = SDL_CreateTextureFromSurface(rend, surface);
+  texture = SDL_CreateTextureFromSurface(Game :: rend, surface);
   SDL_FreeSurface(surface);
   SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
   rect.x = x;
@@ -44,6 +45,6 @@ SDL_Rect* GameObject :: getRect(){
 SDL_Texture* GameObject :: getTexture(){
   return texture;
 }
-void GameObject :: draw(SDL_Renderer* rend){
-  SDL_RenderCopy(rend, texture, NULL, &rect);
+void GameObject :: draw(){
+  SDL_RenderCopy(Game :: rend, texture, NULL, &rect);
 }

@@ -1,5 +1,7 @@
 #include "Game.h"
 
+SDL_Renderer* Game :: rend = nullptr;
+
 Game :: Game() {
   init();
   while(running){
@@ -10,10 +12,10 @@ Game :: Game() {
 
 void Game :: init(){
   win = SDL_CreateWindow("GAME", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sW, sH, 0);
-  rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+  Game :: rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
   running = true;
   populateBlocks();
-  player = new Player(rend, IMG_Load(const_cast<char*>("Resources/Player.png")), 0, 0);
+  player = new Player(IMG_Load(const_cast<char*>("Resources/Player.png")), 0, 0);
   player->setPos(sW / 2 - player->getW() / 2, sH - player->getH());
 
 }
@@ -33,7 +35,7 @@ void Game :: populateBlocks(){
         case '0':
           break;
         case '1':
-          blocks.push_back(new Block(rend, IMG_Load(const_cast<char*>("Resources/yellow.png")), j * blockSize, i * blockSize));
+          blocks.push_back(new Block(IMG_Load(const_cast<char*>("Resources/yellow.png")), j * blockSize, i * blockSize));
           break;
       }
     }
@@ -47,18 +49,18 @@ void Game :: checkCollision(){
 }
 
 void Game :: draw(){
-  SDL_RenderClear(rend);
+  SDL_RenderClear(Game :: rend);
   for(Block* block : blocks){
-    block->draw(rend);
+    block->draw();
   }
 
-  player->draw(rend);
-  SDL_RenderPresent(rend);
+  player->draw();
+  SDL_RenderPresent(Game :: rend);
   SDL_Delay(1000 / 60);
 }
 
 void Game :: cleanUp(){
-  SDL_DestroyRenderer(rend);
+  SDL_DestroyRenderer(Game :: rend);
   SDL_DestroyWindow(win);
 }
 

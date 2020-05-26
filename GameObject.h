@@ -15,7 +15,7 @@ class GameObject {
     SDL_Rect rect;
 
   public:
-    GameObject(SDL_Renderer* rend, SDL_Surface* surface, int x, int y);
+    GameObject(SDL_Surface* surface, int x, int y);
     void setX(int x);
     void setY(int y);
     void setW(int w);
@@ -27,7 +27,7 @@ class GameObject {
     int getH();
     SDL_Rect* getRect();
     SDL_Texture* getTexture();
-    void draw(SDL_Renderer* rend);
+    void draw();
 };
 
 #endif
