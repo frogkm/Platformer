@@ -6,7 +6,7 @@
 class Block : public GameObject {
 
   public:
-    Block(SDL_Surface* surface, int x, int y);
+    Block(char* filePath, int x, int y);
 
 
 };

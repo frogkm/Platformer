@@ -1,15 +1,22 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "GameObject.h"
+#include "Block.h"
+#include <vector>
 
 class Player : public GameObject {
-  private:
-    int jumpHeight;
 
   public:
-    Player(SDL_Surface* surface, int x, int y);
+    Player(char* filePath, int x, int y);
+    void update(vector<Block*> blocks);
 
+    int getXSpeed();
+
+
+
+  private:
+    int xSpeed;
+    int gravity;
 
 };
 

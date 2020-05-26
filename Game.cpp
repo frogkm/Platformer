@@ -15,14 +15,15 @@ void Game :: init(){
   Game :: rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
   running = true;
   populateBlocks();
-  player = new Player(IMG_Load(const_cast<char*>("Resources/Player.png")), 0, 0);
-  player->setPos(sW / 2 - player->getW() / 2, sH - player->getH());
+  player = new Player("Resources/Player.png", 200, 300);
 
 }
 
 void Game :: loop(){
   checkKeyboard();
-  checkCollision();
+
+  player->update(blocks);
+
   draw();
 }
 
@@ -35,7 +36,7 @@ void Game :: populateBlocks(){
         case '0':
           break;
         case '1':
-          blocks.push_back(new Block(IMG_Load(const_cast<char*>("Resources/yellow.png")), j * blockSize, i * blockSize));
+          blocks.push_back(new Block("Resources/yellow.png", j * blockSize, i * blockSize));
           break;
       }
     }
@@ -44,9 +45,6 @@ void Game :: populateBlocks(){
 
 }
 
-void Game :: checkCollision(){
-
-}
 
 void Game :: draw(){
   SDL_RenderClear(Game :: rend);
@@ -72,13 +70,13 @@ void Game :: checkKeyboard(){
   if (SDL_QuitRequested()){
     running = false;
   }
-  /*
+
   if (keys[SDL_GetScancodeFromKey(SDLK_a)]) {
-    player->setX(player->getX() - player->getSpeed());
+    player->setX(player->getX() - player->getXSpeed());
   }
   if (keys[SDL_GetScancodeFromKey(SDLK_d)]) {
-    player->setX(player->getX() + player->getSpeed());
+    player->setX(player->getX() + player->getXSpeed());
   }
-  */
+
 
 }

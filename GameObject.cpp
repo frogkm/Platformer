@@ -1,10 +1,10 @@
 #include "GameObject.h"
 #include "Game.h"
+#include "TextureManager.h"
 
-GameObject :: GameObject(SDL_Surface* surface, int x, int y){
-  this->surface = surface;
-  texture = SDL_CreateTextureFromSurface(Game :: rend, surface);
-  SDL_FreeSurface(surface);
+GameObject :: GameObject(char* filePath, int x, int y){
+
+  texture = TextureManager :: makeTexture(filePath);
   SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
   rect.x = x;
   rect.y = y;

@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block :: Block(SDL_Surface* surface, int x, int y) : GameObject(surface, x, y){
+Block :: Block(char* filePath, int x, int y) : GameObject(filePath, x, y){
   rect.w = blockSize;
   rect.h = blockSize;
 };
